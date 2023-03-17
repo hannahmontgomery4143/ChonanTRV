@@ -8,7 +8,6 @@ class ClipVisionModel():
         config = CLIPVisionConfig.from_json_file(json_config)
         self.model = CLIPVisionModel(config)
         self.processor = CLIPImageProcessor(crop_size=224,
-                                            do_center_crop=True,
                                             do_convert_rgb=True,
                                             do_normalize=True,
                                             do_resize=True,
@@ -26,7 +25,6 @@ class ClipVisionModel():
         return outputs
 
 def load(ckpt_path):
-    clip_data = load_torch_file(ckpt_path)
     clip = ClipVisionModel()
     clip.load_sd(clip_data)
     return clip
